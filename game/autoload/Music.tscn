@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://65qgo7fjkeph"]
+
+[ext_resource type="Script" uid="uid://4b31jcxayn1o" path="res://autoload/music.gd" id="1_6ixmp"]
+
+[node name="Music" type="AudioStreamPlayer" unique_id=1859816403]
+script = ExtResource("1_6ixmp")
+
+[node name="FadeOutTimer" type="Timer" parent="." unique_id=99952973]
+one_shot = true
+
+[node name="LoopTimer" type="Timer" parent="." unique_id=144178263]
+one_shot = true
+
+[node name="FadeInTimer" type="Timer" parent="." unique_id=1047547937]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="timeout" from="FadeOutTimer" to="." method="_on_fade_out_timer_timeout"]
+[connection signal="timeout" from="LoopTimer" to="." method="_on_loop_timer_timeout"]
+[connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]

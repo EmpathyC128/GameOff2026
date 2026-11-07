@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bgux45xcddky7"]
+
+[ext_resource type="Script" uid="uid://b75ms8yy537w8" path="res://autoload/transition.gd" id="1_d1och"]
+
+[sub_resource type="Animation" id="Animation_ylksk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ppfit"]
+resource_name = "fade_in"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d1och"]
+resource_name = "fade_out"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ppfit"]
+_data = {
+&"RESET": SubResource("Animation_ylksk"),
+&"fade_in": SubResource("Animation_ppfit"),
+&"fade_out": SubResource("Animation_d1och")
+}
+
+[node name="Transition" type="CanvasLayer" unique_id=534179552]
+layer = 10
+script = ExtResource("1_d1och")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1688453365]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=415669458]
+libraries/ = SubResource("AnimationLibrary_ppfit")
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=2147295300]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

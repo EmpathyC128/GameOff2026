@@ -10,9 +10,17 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="GameOff2026"
+run/main_scene="uid://cxtqwdbbje1b8"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://dh1wt2m3viqhi"
+SignalBus="*uid://cr08w6o5rfpd8"
+Transition="*uid://bgux45xcddky7"
+Music="*uid://65qgo7fjkeph"
 
 [display]
 
