@@ -1,0 +1,1 @@
+class_name MovementSettings extends Node2D
