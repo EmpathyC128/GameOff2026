@@ -7,11 +7,13 @@ var _wait_duration: float = -1
 
 
 enum GameScene {
-    START_MENU
+    START_MENU,
+    TEST_LEVEL,
 }
 
 var _scene_paths: Dictionary[GameScene, String] = {
-    GameScene.START_MENU: "uid://s07a6jx8rfxk"
+    GameScene.START_MENU: "uid://s07a6jx8rfxk",
+    GameScene.TEST_LEVEL: "uid://crrn8hodf47g7" 
 }
 
 

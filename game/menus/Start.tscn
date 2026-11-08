@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://s07a6jx8rfxk"]
 
-[node name="Node2D" type="Node2D" unique_id=470402517]
+[ext_resource type="Script" uid="uid://op38v4mn4ulo" path="res://game/menus/start.gd" id="1_l4kgr"]
+
+[node name="Start" type="Node2D" unique_id=470402517]
+script = ExtResource("1_l4kgr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1775280948]
 
@@ -11,3 +14,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.49411765, 0.22352941, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1347130131]
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 332.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "Familiar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=1703841991]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
