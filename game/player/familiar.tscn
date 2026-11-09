@@ -9,8 +9,12 @@
 [ext_resource type="Script" uid="uid://0i8wi2ybuqn3" path="res://game/common/state_machine/state_machine.gd" id="6_sau4e"]
 [ext_resource type="Script" uid="uid://bhgov301k4y61" path="res://game/player/player_state.gd" id="7_djdiv"]
 [ext_resource type="Shape2D" uid="uid://dsomqubayauae" path="res://game/player/data/collision/raven-collision-shape.tres" id="9_dtyqx"]
+[ext_resource type="Resource" uid="uid://gnua1nrqyuq2" path="res://game/player/data/movement/fox-movement.tres" id="9_y8r0a"]
 [ext_resource type="Shape2D" uid="uid://cldceupwhkw8b" path="res://game/player/data/collision/rat-collision-shape.tres" id="10_ktoe7"]
+[ext_resource type="Resource" uid="uid://db4v3h1ctxs4f" path="res://game/player/data/movement/raven-movement.tres" id="10_r2l85"]
 [ext_resource type="Shape2D" uid="uid://bw6q5u66xsn72" path="res://game/player/data/collision/bear-collision-shape.tres" id="11_peoi1"]
+[ext_resource type="Resource" uid="uid://bb4gfgj7kiyr2" path="res://game/player/data/movement/rat-movement.tres" id="12_mjds8"]
+[ext_resource type="Resource" uid="uid://cs41xth2whjci" path="res://game/player/data/movement/bear-movement.tres" id="14_hjdyg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sau4e"]
 atlas = ExtResource("1_d6ffh")
@@ -113,6 +117,7 @@ state_2 = NodePath("../Raven")
 state_3 = NodePath("../Rat")
 state_4 = NodePath("../Bear")
 movement = NodePath("../../Movement")
+movement_settings = ExtResource("9_y8r0a")
 sprite = NodePath("../../FoxSprite")
 collision = NodePath("../../CollisionShape2D")
 collision_shape = ExtResource("5_6s3l2")
@@ -125,6 +130,7 @@ state_1 = NodePath("../Fox")
 state_3 = NodePath("../Rat")
 state_4 = NodePath("../Bear")
 movement = NodePath("../../Movement")
+movement_settings = ExtResource("10_r2l85")
 sprite = NodePath("../../RavenSprite")
 collision = NodePath("../../CollisionShape2D")
 collision_shape = ExtResource("9_dtyqx")
@@ -137,6 +143,7 @@ state_1 = NodePath("../Fox")
 state_2 = NodePath("../Raven")
 state_4 = NodePath("../Bear")
 movement = NodePath("../../Movement")
+movement_settings = ExtResource("12_mjds8")
 sprite = NodePath("../../RatSprite")
 collision = NodePath("../../CollisionShape2D")
 collision_shape = ExtResource("10_ktoe7")
@@ -149,6 +156,7 @@ state_1 = NodePath("../Fox")
 state_2 = NodePath("../Raven")
 state_3 = NodePath("../Rat")
 movement = NodePath("../../Movement")
+movement_settings = ExtResource("14_hjdyg")
 sprite = NodePath("../../BearSprite")
 collision = NodePath("../../CollisionShape2D")
 collision_shape = ExtResource("11_peoi1")

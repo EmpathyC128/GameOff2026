@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MovementSettings" format=3 uid="uid://cs41xth2whjci"]
+
+[ext_resource type="Script" uid="uid://cx8mtne1apj5c" path="res://game/player/movement/movement_settings.gd" id="1_1dves"]
+
+[resource]
+script = ExtResource("1_1dves")
+metadata/_custom_type_script = "uid://cx8mtne1apj5c"
