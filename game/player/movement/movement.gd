@@ -7,16 +7,19 @@ var settings: MovementSettings
 
 var enabled: bool = true
 
+signal on_jump()
+signal on_land()
+signal on_change_direction(direction: int)
 
 # State
 var last_jump_press: int = 0
 var last_floor_touch: int = 0
 var prev_tick_on_floor: bool = false
-var last_jump: int = 0
-var last_land: int = 0
 
 var last_obstacle_collide: int = 0
 var last_non_zero_velocity: int = 0
+
+var last_direction: float = 0
 
 
 func _ready() -> void:
@@ -48,7 +51,7 @@ func _physics_process(delta: float) -> void:
         process_walk(delta)
 
 
-func process_fly(delta: float) -> void:
+func process_fly(_delta: float) -> void:
     pass
 
 
@@ -86,17 +89,13 @@ func process_walk_in_air(delta: float, now: int) -> void:
 
     # Apply Gravity
     else:
-        
         var gravity_multiplier: float = 1.0
         if player.velocity.y > 0:
             gravity_multiplier = settings.downward_gravity_multiplier
         player.velocity += player.get_gravity() * delta * gravity_multiplier
 
-    var direction := Input.get_axis("left", "right")
-
     # Apply X velocity
     apply_x_velocity(
-        direction,
         settings.air_acceleration,
         settings.air_turn_acceleration,
         settings.air_decceleration,
@@ -113,13 +112,11 @@ func process_walk_on_ground(delta: float, now: int) -> void:
     
     # Land
     elif not prev_tick_on_floor:
-        last_land = now
+        on_land.emit()
 
-    var direction := Input.get_axis("left", "right")
 
     # Apply X velocity
     apply_x_velocity(
-        direction,
         settings.run_acceleration,
         settings.turn_acceleration,
         settings.run_decceleration,
@@ -128,17 +125,20 @@ func process_walk_on_ground(delta: float, now: int) -> void:
 
 
 func apply_x_velocity(
-    direction: float, 
     acceleration: float, 
     turn_acceleration: float, 
     decceleration: float, 
     delta: float
-    ):
-    var turning: bool = (direction * player.velocity.x) < 0
+    ) -> void:
+    var new_direction = Input.get_axis("left", "right")
+    var turning: bool = (new_direction * player.velocity.x) < 0
 
-    if direction:
+    if new_direction:
+        if last_direction != new_direction:
+            last_direction = new_direction
+            on_change_direction.emit(new_direction)
         var acc: float = acceleration if not turning else turn_acceleration
-        player.velocity.x += acc * direction * delta
+        player.velocity.x += acc * new_direction * delta
     else:
         player.velocity.x = move_toward(player.velocity.x, 0, decceleration * delta)
 
@@ -147,11 +147,11 @@ func jump(now: int = -1) -> void:
     if now == -1:
         now = Global.now
     player.velocity.y = - settings.jump_strength
-    last_jump = now
     last_jump_press = 0
+    on_jump.emit()
 
 
-func process_push(now: int):
+func process_push(now: int) -> void:
     if not settings.can_push:
         return
     

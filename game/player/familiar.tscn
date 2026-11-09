@@ -122,6 +122,8 @@ sprite = NodePath("../../FoxSprite")
 collision = NodePath("../../CollisionShape2D")
 collision_shape = ExtResource("5_6s3l2")
 collision_shape_position = Vector2(-1, 4)
+jump_skew = 0.12
+land_skew = 0.8
 metadata/_custom_type_script = "uid://bhgov301k4y61"
 
 [node name="Raven" type="Node2D" parent="StateMachine" unique_id=526021434 node_paths=PackedStringArray("state_1", "state_3", "state_4", "movement", "sprite", "collision")]
