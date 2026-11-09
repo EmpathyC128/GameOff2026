@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MovementSettings" format=3 uid="uid://gnua1nrqyuq2"]
+
+[ext_resource type="Script" uid="uid://cx8mtne1apj5c" path="res://game/player/movement/movement_settings.gd" id="1_sbwi3"]
+
+[resource]
+script = ExtResource("1_sbwi3")
+max_run_speed = 120.0
+run_acceleration = 1500.0
+run_decceleration = 3000.0
+turn_acceleration = 3000.0
+jump_strength = 220.0
+downward_gravity_multiplier = 1.3
+air_acceleration = 700.0
+air_decceleration = 300.0
+air_turn_acceleration = 800.0
+coyote_time_ms = 80
+jump_buffer_ms = 80
+terminal_velocity = 700.0
+push_force = 0.0
+metadata/_custom_type_script = "uid://cx8mtne1apj5c"
